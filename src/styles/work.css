@@ -89,7 +89,27 @@
 @media (min-width: 768px) {
   .grid-landscape {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.75rem;
+  }
+
+  .grid-landscape > :nth-child(3):last-child {
+    grid-column: 1 / -1;
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-landscape {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .grid-landscape > :nth-child(3):last-child {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
   }
 }
 
