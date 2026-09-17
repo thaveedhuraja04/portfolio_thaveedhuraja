@@ -1,0 +1,390 @@
+/* Work Section */
+.work-section {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.category-block {
+  margin-bottom: 5rem;
+}
+
+.category-block:last-child {
+  margin-bottom: 0;
+}
+
+.category-header {
+  margin-bottom: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.category-tag {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+.category-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.category-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.55;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Category 01: 9:16 Vertical Video Grid */
+.grid-vertical {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 400px) {
+  .grid-vertical {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-vertical {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-vertical {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+/* Category 02: 16:9 Landscape Video Grid */
+.grid-landscape {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .grid-landscape {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Video Card Structure */
+.video-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: #121110;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal);
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  outline: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.video-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .video-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-gold-border);
+  }
+  
+  .video-card .card-play-btn {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  .video-card:hover .card-play-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+    background-color: var(--accent-gold);
+    color: #16140e;
+    box-shadow: 0 0 25px rgba(203, 161, 53, 0.6);
+  }
+
+  .video-card:hover .video-card-badge {
+    background-color: var(--accent-gold);
+    color: #181716;
+  }
+}
+
+/* Touch Device Visibility for Play Button */
+@media (hover: none) and (pointer: coarse) {
+  .video-card .card-play-btn {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+/* Aspect Ratio Containers */
+.video-media-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #151413;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-media-wrapper.ratio-9-16 {
+  aspect-ratio: 9 / 16;
+}
+
+.video-media-wrapper.ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+/* Internal Video Elements */
+.card-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-smooth);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .video-card:hover .card-video {
+    transform: scale(1.03);
+  }
+}
+
+/* Video Overlay & Controls */
+.video-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 17, 16, 0.4) 0%,
+    rgba(18, 17, 16, 0.05) 40%,
+    rgba(18, 17, 16, 0.7) 100%
+  );
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  transition: background var(--transition-normal);
+}
+
+.video-card:hover .video-card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 17, 16, 0.5) 0%,
+    rgba(18, 17, 16, 0.1) 40%,
+    rgba(18, 17, 16, 0.8) 100%
+  );
+}
+
+/* Card Header Information */
+.video-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.video-card-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: rgba(25, 24, 23, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.video-card-format {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+/* Card Actions & Mute Button */
+.video-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.card-mute-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: rgba(25, 24, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: all var(--transition-fast);
+  padding: 0;
+  outline: none;
+  position: relative;
+}
+
+/* Expand tap target to 48px for touch fingers on mobile */
+.card-mute-btn::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+
+.card-mute-btn svg {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.card-mute-btn .icon-unmuted {
+  display: none;
+}
+
+.card-mute-btn .icon-muted {
+  display: block;
+}
+
+.card-mute-btn.is-unmuted {
+  background-color: var(--accent-gold);
+  color: #181716;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 12px rgba(203, 161, 53, 0.5);
+}
+
+.card-mute-btn.is-unmuted .icon-unmuted {
+  display: block;
+}
+
+.card-mute-btn.is-unmuted .icon-muted {
+  display: none;
+}
+
+.card-mute-btn:hover {
+  background-color: var(--accent-gold);
+  color: #181716;
+  border-color: var(--accent-gold);
+  transform: scale(1.1);
+  box-shadow: 0 0 14px rgba(203, 161, 53, 0.4);
+}
+
+.card-mute-btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* Center Play Button */
+.card-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba(247, 244, 238, 0.9);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  z-index: 2;
+}
+
+.card-play-btn svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px; /* optical center */
+}
+
+/* Card Footer Information */
+.video-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.video-card-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.video-card-file {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 559px) {
+  .video-card {
+    border-radius: var(--radius-md);
+  }
+  
+  .card-play-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .card-play-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
